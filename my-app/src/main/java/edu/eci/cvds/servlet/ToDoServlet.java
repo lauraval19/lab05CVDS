@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import edu.eci.cvds.servlet.Service;
 import edu.eci.cvds.servlet.model.Todo;
+import java.util.List;
 
 
 /**
@@ -27,11 +28,17 @@ import edu.eci.cvds.servlet.model.Todo;
 public class ToDoServlet extends HttpServlet {
     
     Service service;
+    List<Todo> listaxhacer;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Optional<String> optId = Optional.ofNullable(req.getParameter("id"));
         Todo todo = service.getTodo(Integer.parseInt(optId.get()));
+        if(todo != null){
+            resp.setStatus(HttpServletResponse.SC_OK);
+            listaxhacer.add(todo);
+        }
+                
         
     }
 }
