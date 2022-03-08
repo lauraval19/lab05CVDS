@@ -39,7 +39,31 @@ public class ToDoServlet extends HttpServlet {
             listaxhacer.add(todo);
             resp.setStatus(HttpServletResponse.SC_OK);
             responseWriter.write(Service.todosToHTMLTable(listaxhacer));
-            
+
+        } catch (NumberFormatException nex) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } catch (MalformedURLException mex) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (FileNotFoundException fex) {
+            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        } catch (Exception ex) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+        responseWriter.flush();
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Writer responseWriter = resp.getWriter();
+        ArrayList<Todo> listaxhacer = new ArrayList();
+        try {
+            Optional<String> optId = Optional.ofNullable(req.getParameter("id"));
+            String id = optId.isPresent() && !optId.get().isEmpty() ? optId.get() : "";
+            Todo todo = Service.getTodo(Integer.parseInt(id));
+            listaxhacer.add(todo);
+            resp.setStatus(HttpServletResponse.SC_OK);
+            responseWriter.write(Service.todosToHTMLTable(listaxhacer));
+
         } catch (NumberFormatException nex) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         } catch (MalformedURLException mex) {
