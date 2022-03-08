@@ -11,34 +11,44 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.eci.cvds.servlet.Service;
 import edu.eci.cvds.servlet.model.Todo;
-import java.util.List;
-
+import java.io.FileNotFoundException;
+import java.io.Writer;
+import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 /**
  *
  * @author laura.alvarado-g
  */
-
 @WebServlet(
-        urlPatterns = "/helloToDoServlet"
+        urlPatterns = "/servletJsonPlaceHolder"
 )
-
 public class ToDoServlet extends HttpServlet {
-    
-    Service service;
-    List<Todo> listaxhacer;
+
+    static final long serialVersionUID = 35L;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Optional<String> optId = Optional.ofNullable(req.getParameter("id"));
-        Todo todo = service.getTodo(Integer.parseInt(optId.get()));
-        if(todo != null){
-            resp.setStatus(HttpServletResponse.SC_OK);
+        Writer responseWriter = resp.getWriter();
+        ArrayList<Todo> listaxhacer = new ArrayList();
+        try {
+            Optional<String> optId = Optional.ofNullable(req.getParameter("id"));
+            String id = optId.isPresent() && !optId.get().isEmpty() ? optId.get() : "";
+            Todo todo = Service.getTodo(Integer.parseInt(id));
             listaxhacer.add(todo);
+            resp.setStatus(HttpServletResponse.SC_OK);
+            responseWriter.write(Service.todosToHTMLTable(listaxhacer));
+            
+        } catch (NumberFormatException nex) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } catch (MalformedURLException mex) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (FileNotFoundException fex) {
+            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        } catch (Exception ex) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
-                
-        
+        responseWriter.flush();
     }
 }
