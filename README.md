@@ -51,12 +51,12 @@ Codigos de error existen los siguientes:
 + **422 Entidad no procesable :** La solicitud estaba bien formada, pero no se pudo seguir debido a errores semánticos
 + **423 Bloqueado:** El recurso al que se accede está bloqueado.
 + **424 Dependencia fallida:** La solicitud falló porque dependía de otra solicitud y esa solicitud falló
-+ **425 demasiado pronto:**Indica que el servidor no está dispuesto a correr el riesgo de procesar una solicitud que podría reproducirse.
-+ **426 Requiere actualización:**El cliente debe cambiar a un protocolo diferente, como TLS / 1.0 , que se proporciona en el campo de encabezado de actualización 
-+ **428 Requisito previo:**El servidor de origen requiere que la solicitud sea condicional. Con la intención de evitar el problema de la 'actualización perdida', donde un cliente obtiene el estado de un recurso, lo modifica y lo devuelve al servidor, cuando mientras tanto un tercero ha modificado el estado en el servidor, lo que lleva a un conflicto.
-+ **429 Demasiadas solicitudes:**El usuario ha enviado demasiadas solicitudes en un período de tiempo determinado. Diseñado para su uso con esquemas de limitación de velocidad .
-+ **431 Campos de encabezado de solicitud demasiado grandes:**El servidor no está dispuesto a procesar la solicitud porque un campo de encabezado individual o todos los campos de encabezado en conjunto son demasiado grandes.
-+ **451 No disponible por motivos legales:**Un operador de servidor ha recibido una demanda legal para denegar el acceso a un recurso oa un conjunto de recursos que incluye el recurso solicitado. 
++ **425 demasiado pronto:** Indica que el servidor no está dispuesto a correr el riesgo de procesar una solicitud que podría reproducirse.
++ **426 Requiere actualización:** El cliente debe cambiar a un protocolo diferente, como TLS / 1.0 , que se proporciona en el campo de encabezado de actualización 
++ **428 Requisito previo:** El servidor de origen requiere que la solicitud sea condicional. Con la intención de evitar el problema de la 'actualización perdida', donde un cliente obtiene el estado de un recurso, lo modifica y lo devuelve al servidor, cuando mientras tanto un tercero ha modificado el estado en el servidor, lo que lleva a un conflicto.
++ **429 Demasiadas solicitudes:** El usuario ha enviado demasiadas solicitudes en un período de tiempo determinado. Diseñado para su uso con esquemas de limitación de velocidad .
++ **431 Campos de encabezado de solicitud demasiado grandes:** El servidor no está dispuesto a procesar la solicitud porque un campo de encabezado individual o todos los campos de encabezado en conjunto son demasiado grandes.
++ **451 No disponible por motivos legales:** Un operador de servidor ha recibido una demanda legal para denegar el acceso a un recurso oa un conjunto de recursos que incluye el recurso solicitado. 
 
 Realice una nueva conexión con telnet, esta vez a:
 Host: www.httpbin.org
