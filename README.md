@@ -81,11 +81,22 @@ Claro está, las peticiones GET son insuficientes en muchos casos. Investigue: �
 
 En la practica no se utiliza telnet para hacer peticiones a sitios web sino el comando curl con ayuda de la linea de comandos:
 
+```
 curl www.httpbin.org
+```
+![image](https://user-images.githubusercontent.com/25957863/157166798-51012744-6571-411c-aec7-4759e9992a77.png)
+
 Utilice ahora el parámetro -v y con el parámetro -i:
 
+```
 curl -v www.httpbin.org
+```
+![image](https://user-images.githubusercontent.com/25957863/157166847-28192291-e2d6-44a3-a0ff-d7dfaa327262.png)
+
+```
 curl -i www.httpbin.org
+```
+![image](https://user-images.githubusercontent.com/25957863/157166902-e44e5ee9-8fe1-4157-93b6-a3606d0f54d5.png)
 
 #### ¿Cuáles son las diferencias con los diferentes parámetros?
 
