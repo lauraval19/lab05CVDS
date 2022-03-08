@@ -58,15 +58,19 @@ Codigos de error existen los siguientes:
 + **431 Campos de encabezado de solicitud demasiado grandes:**El servidor no está dispuesto a procesar la solicitud porque un campo de encabezado individual o todos los campos de encabezado en conjunto son demasiado grandes.
 + **451 No disponible por motivos legales:**Un operador de servidor ha recibido una demanda legal para denegar el acceso a un recurso oa un conjunto de recursos que incluye el recurso solicitado. 
 
-
 Realice una nueva conexión con telnet, esta vez a:
 Host: www.httpbin.org
 Puerto: 80
+
+![image](https://user-images.githubusercontent.com/25957863/157165902-ea8c4d0b-5306-4fcc-8f4e-89edea8b5319.png)
+
 Versión HTTP: 1.1
 Ahora, solicite (GET) el recurso /html. ¿Qué se obtiene como resultado?
 
-
-¡Muy bien!, ¡Acaba de usar del protocolo HTTP sin un navegador Web!. Cada vez que se usa un navegador, éste se conecta a un servidor HTTP, envía peticiones (del protocolo HTTP), espera el resultado de las mismas, y -si se trata de contenido HTML- lo interpreta y dibuja.
+```
+GET /html HTTP/1.1
+```
+![image](https://user-images.githubusercontent.com/25957863/157166022-d65fca77-d000-4345-980c-3435fec7ef10.png)
 
 Seleccione el contenido HTML de la respuesta y copielo al cortapapeles CTRL-SHIFT-C. Ejecute el comando wc (word count) para contar palabras con la opción -c para contar el número de caracteres:
 
@@ -82,4 +86,9 @@ Utilice ahora el parámetro -v y con el parámetro -i:
 
 curl -v www.httpbin.org
 curl -i www.httpbin.org
-¿Cuáles son las diferencias con los diferentes parámetros?
+
+#### ¿Cuáles son las diferencias con los diferentes parámetros?
+
+Con el comando ```curl -v www.httpbin.org``` fue posible evidenciar el detalle de la conexion, mostrando la direccion IP el puerto y el host ademas de poder observar si fue aceptado, posterior a esto se evidencia la pagina web
+
+Con el comando ```curl -i www.httpbin.org``` fue posible evidenciar la fecaha y hora en que se realizo la consulta del HTML, con la longitud, el tipo de conexion, y el servidor al cual se conecto para fianalmente mostrar la pagina HTML
