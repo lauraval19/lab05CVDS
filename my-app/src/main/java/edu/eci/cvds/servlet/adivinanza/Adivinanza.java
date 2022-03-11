@@ -1,11 +1,7 @@
 package edu.eci.cvds.servlet.adivinanza;
 
-import java.util.ArrayList;
-import java.util.Random;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.*;
-import javax.annotation.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 
@@ -14,10 +10,11 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 
 public class Adivinanza {
-    int Numadi=0;
-    int intentos=0;
+    int Numadi=(int) (Math.random() * 10);
+    int intentos;
     int premio=0;
     String estado;
+    int numingr;
 
     public Adivinanza() {}
 
@@ -37,17 +34,47 @@ public class Adivinanza {
         return estado;
     }
 
-    public void guess(int intento){
-        Numadi = (int) (Math.random() * 10);
-        if (Numadi == intento){
+    public int getNumingr() {
+        return numingr;
+    }
+
+    public void setNumadi(int numadi) {
+        Numadi = numadi;
+    }
+
+    public void setIntentos(int intentos) {
+        this.intentos = intentos;
+    }
+
+    public void setPremio(int premio) {
+        this.premio = premio;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setNumingr(int numingr) {
+        this.numingr = numingr;
+    }
+
+    public void guess(){
+        if (Numadi == numingr){
             premio += 100;
             estado = "ganó 100 puntos";
         }
         else{
             premio += 0;
             estado = "no ganó";
+            intentos += 1;
         }
     }
 
-    public void restart(){}
+    public void restart(){
+        intentos=0;
+        premio=0;
+        estado="";
+        numingr=0;
+        Numadi = (int) (Math.random() * 10);
+    }
 }
